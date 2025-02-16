@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { CreatePropertyDto } from './dto/create-property.dto';
 import { UpdatePropertyDto } from './dto/update-property.dto';
 import { PaginationDto, PrismaService } from 'src/shared';
+import { RpcException } from '@nestjs/microservices';
 
 @Injectable()
 export class PropertiesService {
@@ -77,14 +78,16 @@ export class PropertiesService {
   
 
   async findOne(id: string) {
-    const property = await this.prisma.property.findUnique({
-      where: { id },
-    });
-  
-    if (!property) {
-      throw new Error(`Property with ID ${id} not found`);
-    }
-  
+    const property = await this.prisma.property.findFirst({
+      where:{ id, available: true }});
+
+      if ( !property ) {
+        throw new RpcException({ 
+          message: `Product with id #${ id } not found`,
+          status: HttpStatus.BAD_REQUEST
+        });
+      }
+
     return property;
   }
   
