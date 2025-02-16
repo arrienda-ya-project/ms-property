@@ -1,18 +1,17 @@
 import { Module } from '@nestjs/common';
 import { PrismaModule, RedisModule } from '.';
-// import { SeedModule } from './modules/seed/seed.module';
-// import { RabbitMQModule } from './modules/rabbitmq/rabbitmq.module';
+import { RabbitMQModule } from './modules/rabbitmq/rabbitmq.module';
 
 @Module({
     imports:[
-        // RedisModule,
+        RedisModule,
         PrismaModule,
-        // SeedModule,
-        // RabbitMQModule
+        RabbitMQModule
     ],
     exports:[
-        // RedisModule,
-        PrismaModule
+        RedisModule,
+        PrismaModule,
+        RabbitMQModule
     ]
 })
 export class SharedModule {}

@@ -23,6 +23,12 @@ export class PropertiesController {
   async findAll(@Payload() paginationDto:PaginationDto){
     return this.propertiesService.findAll(paginationDto)
   }
+
+  @MessagePattern({cmd:'test'})
+  async test(@Payload() paginationDto:any){
+    return this.propertiesService.findAll(paginationDto)
+  }
+  
   // @Get(':id')
   @MessagePattern({cmd:'find_one_property'})
   async findById(@Payload('id') id: string) {

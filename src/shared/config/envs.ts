@@ -10,6 +10,12 @@ interface EnvVars {
   REDIS_DB: string;
   RABBITMQ_ENDPOINT:string
 
+  RENTAL_REQUEST_PORT: number;
+  RENTAL_REQUEST_HOST: string;
+
+  ORDER_PORT: number;
+  ORDER_HOST: string;
+
 }
 
 const envsSchema = joi
@@ -21,6 +27,13 @@ const envsSchema = joi
     REDIS_PORT: joi.number().required(),
     REDIS_PASSWORD: joi.string().optional(),
     REDIS_DB: joi.string().required(),
+    
+    RENTAL_REQUEST_PORT: joi.number().required(),
+    RENTAL_REQUEST_HOST: joi.string().required(),
+
+    ORDER_PORT: joi.number().required(),
+    ORDER_HOST: joi.string().required(),
+
     
 
     
@@ -47,6 +60,12 @@ export const envs = {
   REDIS_PORT: envVars.REDIS_PORT,
   REDIS_PASSWORD: envVars.REDIS_PASSWORD,
   REDIS_DB: envVars.REDIS_DB,
+
+  RENTAL_REQUEST_PORT: envVars.RENTAL_REQUEST_PORT,
+  RENTAL_REQUEST_HOST: envVars.RENTAL_REQUEST_HOST,
+
+  ORDER_PORT: envVars.ORDER_PORT,
+  ORDER_HOST: envVars.ORDER_HOST,
  
   
   
