@@ -78,8 +78,9 @@ export class PropertiesService {
   
 
   async findOne(id: string) {
-    const property = await this.prisma.property.findFirst({
-      where:{ id, available: true }});
+    const property = await this.prisma.property.findUnique({
+      where:{ id }   
+     });
 
       if ( !property ) {
         throw new RpcException({ 
